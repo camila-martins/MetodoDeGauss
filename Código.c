@@ -1,4 +1,10 @@
 //Tarefa 3 - Métodos Numéricos II
+#include <stdio.h>
+#include<math.h>
+#include<stdlib.h>
+
+
+
 int main (int argc , char ** argv )
 {
   double ** M;
