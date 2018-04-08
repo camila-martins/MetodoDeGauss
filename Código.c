@@ -30,6 +30,22 @@ double **ler(char *matriz, int *dim)
   return (M);
 }
 
+void imprime(double **M, int dim)
+{
+  int i, j;
+  printf("\n");
+  for(i=0;i<dim+1;i++)
+  {
+    for(j=0; j<dim+1; j++)
+    {
+      printf("%3g\t", M[i][j]);
+    }
+    puts("");
+  }
+}
+    
+  
+
 int main (int argc , char ** argv )
 {
   double ** M;
