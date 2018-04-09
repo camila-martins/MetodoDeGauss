@@ -8,20 +8,21 @@ double **ler(char *matriz, int *dim)
 {
   int i, j, a;
   double **M;
-  fp=fopen("Matriz.dat", "r");
+  fp=fopen("matriz", "r");
   i=fscanf(fp, "%d\t", dim);
-  M=malloc(*dim*sizeof(double*));
+  M=malloc(*dim *sizeof(double*));
   for(i=0; i<*dim; i++)
   {
     M[i]=malloc((*dim+1)*sizeof(double));
   }
-  i=j=0;
+  i=0;
+  j=0;
   
-  while(fscanf(fp, "%d\t", &a)!=EOF)
+  while(fscanf(fp, "%d", &a)!=EOF)
   {
     M[i][j]=a;
     j++;
-    if(j==*dim+1)
+    if(j== *dim+1)
     {
       j=0;
       j++;
@@ -43,9 +44,24 @@ void imprime(double **M, int dim)
     puts("");
   }
 }
-    
-  
-
+double **triangsup(double **M, int dim)
+{
+  int i, j, k, l;
+  double N;
+  for(k=0; k<dim+1; k++)
+  {
+    for(i=k+1; i<dim; i++)
+    {
+      N=M[i][k]/M[k][k];
+      for(j=0; j<dim+1; j++)
+      {
+        M[i][j]=N[i][j]-(N*M[k][j]);
+      }
+    }
+  }
+  return (M);
+}
+ 
 int main (int argc , char ** argv )
 {
   double ** M;
