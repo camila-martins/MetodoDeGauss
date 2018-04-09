@@ -4,6 +4,7 @@
 #include<stdlib.h>
 
 FILE *fp;
+//Função para ler a matriz do arquivo Matriz.dat
 double **ler(char *matriz, int *dim)
 {
   int i, j, a;
@@ -30,7 +31,7 @@ double **ler(char *matriz, int *dim)
   }
   return (M);
 }
-
+//Função para imprimir mas matrizes
 void imprime(double **M, int dim)
 {
   int i, j;
@@ -44,6 +45,7 @@ void imprime(double **M, int dim)
     puts("");
   }
 }
+//Função Triangularização
 double **triangsup(double **M, int dim)
 {
   int i, j, k, l;
@@ -61,6 +63,23 @@ double **triangsup(double **M, int dim)
   }
   return (M);
 }
+
+//Função Substituição Reversa
+void subsreversa(double **M, double *raizes, int dim)
+{
+  int i, j;
+  double soma;
+  for(i=dim-1; i>=0; i--)
+  {
+    soma=0;
+    for(j=i+1; j<dim; j++)
+    {
+      soma=soma+(M[i][j]*raizes[j]);
+    }
+    raizes[i]=(M[i][dim]-soma)/M[i][i];
+  }
+}
+      
  
 int main (int argc , char ** argv )
 {
@@ -69,17 +88,20 @@ int main (int argc , char ** argv )
   int i , dim ;
 
   printf("\nMatriz lida no arquivo Matriz.dat:\n");
-  M= ler ( argv [1] ,& dim );
-  imprime (M , dim ) ;
+  M= ler(argv[1],&dim);
+  imprime(M,dim);
   
   printf("\n Matriz triangularizada:\n");
-  triangsup (M , dim ) ;
-  imprime (M , dim ) ;
+  triangsup(M,dim);
+  imprime(M,dim);
   
-  
-  raizes = malloc ( dim * sizeof ( double ) );
-  subsreversa (M , raizes , dim );
-  for ( i =0; i < dim ; i ++) 
-    printf ("x%1d = %5.2 lf\n",i , raizes [ i]) ;
+  //Solução através da substituição reversa:
+  printf("\nSolução:\n");
+  raizes = malloc(dim *sizeof(double));
+  subsreversa(M,raizes,dim);
+  for (i=0;i<dim;i++) 
+  {
+    printf ("x%1d = %5.2 lf\n",i , raizes[i]) ;
   return 0;
+  fclose(fp);
   }
