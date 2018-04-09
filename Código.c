@@ -68,10 +68,15 @@ int main (int argc , char ** argv )
   double * raizes ;
   int i , dim ;
 
+  printf("\nMatriz lida no arquivo Matriz.dat:\n");
   M= ler ( argv [1] ,& dim );
   imprime (M , dim ) ;
+  
+  printf("\n Matriz triangularizada:\n");
   triangsup (M , dim ) ;
-  imprime (M , dim ) ;  
+  imprime (M , dim ) ;
+  
+  
   raizes = malloc ( dim * sizeof ( double ) );
   subsreversa (M , raizes , dim );
   for ( i =0; i < dim ; i ++) 
