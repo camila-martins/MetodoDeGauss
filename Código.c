@@ -8,7 +8,7 @@ double **ler(char *matriz, int *dim)
 {
   int i, j, a;
   double **M;
-  fp=fopen("matriz", "r");
+  fp=fopen(matriz, "r");
   i=fscanf(fp, "%d\t", dim);
   M=malloc(*dim *sizeof(double*));
   for(i=0; i<*dim; i++)
