@@ -50,14 +50,14 @@ double **triangsup(double **M, int dim)
 {
   int i, j, k, l;
   double N;
-  for(k=0; k<dim+1; k++)
+  for(k=0;k<dim+1;k++)
   {
     for(i=k+1; i<dim; i++)
     {
       N=M[i][k]/M[k][k];
-      for(j=0; j<dim+1; j++)
+      for(j=0;j<dim+1;j++)
       {
-        M[i][j]=N[i][j]-(N*M[k][j]);
+        M[i][j]=M[i][j]-(N*M[k][j]);
       }
     }
   }
